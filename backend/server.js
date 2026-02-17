@@ -16,6 +16,16 @@ app.get("/db-test", async (req, res) => {
   }
 });
 
+app.get("/cart", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT name, quantity, totalvalue FROM cart");
+    res.json(result.rows);
+  } catch (err) {
+    console.error("GET CART ERROR:", err);
+    res.status(500).json({ error: "Failed to fetch cart", detail: err.message });
+  }
+});
+
 app.post("/cart/add-apple", async (req, res) => {
   try {
     // Get Apple’s value from items
