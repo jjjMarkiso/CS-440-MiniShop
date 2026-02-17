@@ -12,7 +12,7 @@ And name it "frontend", select React, then select JavaScript, then install the f
    npm install pg  
    npm install dotenv  
    
-6. Next cd into your backend and install the following libraries with the following commands
+6. Next cd into your backend and install the following libraries with the following commands  
    npm init -y  
    npm install express  
    npm install nodemon --save-dev  
