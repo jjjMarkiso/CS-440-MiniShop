@@ -18,6 +18,7 @@
    npm install nodemon --save-dev  
    npm install cors  
 
-7. Once you get to this step, download the repository, copy everything from frontend/backend and paste it into your CS-MiniShop frontend/backend folders  
+7. Once you get to this step, download the repository, copy everything from frontend/backend and paste it into your CS-MiniShop frontend/backend folders
+  
 If it says "Replace files" select yes.
    
