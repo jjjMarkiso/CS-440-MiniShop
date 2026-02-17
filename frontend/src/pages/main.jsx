@@ -1,4 +1,5 @@
 import styles from './main.module.css'
+import { Link } from "react-router-dom"
 
 function MainPage() {
 
@@ -31,12 +32,21 @@ function MainPage() {
         <>
             <div className={styles.page}>
                 <div className={styles.header}>
-                    <button>Login</button>
+                    <Link to="/login">
+                        <button>Login</button>
+                    </Link>
                     <button>LogOut</button>
+                    <Link to="/signup">
+                        <button>SignUp</button>
+                    </Link>
+                    
                 </div>
                 <div className={styles.container}>
                     <button onClick={addToCart}>Add To Cart</button>
-                    <button>View Cart</button>
+                    <Link to="/cart">
+                        <button>View Cart</button>
+                    </Link>
+                    
                 </div>
                 <div className={styles.footer}>
                     <p>FOOTER</p>
