@@ -5,7 +5,7 @@
 2. Create a subdirectories named "backend", frontend will be created with React so don't create one.  
 3. Using Visual Studio Code, open up the workspace "CS440-MiniShop" and cd into "CS440-MiniShop"  
 4. Create the frontend using the following command  
-   npm create vite@latest  
+   npm create vite@latest    
 And name it "frontend", select React, then select JavaScript, then install the following libraries with the following commands  
    npm install react-router-dom  
    npm install pg  
