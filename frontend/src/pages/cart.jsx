@@ -29,6 +29,52 @@ function Cart() {
     }
   };
 
+  const addApple = async () => {
+    setError("");
+    try {
+      const res = await fetch("http://localhost:5000/cart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name: "Apple" })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Failed to add apple");
+        return;
+      }
+
+      loadCart();
+    } catch (err) {
+      console.error(err);
+      setError("Server not reachable");
+    }
+  };
+
+  const removeApple = async () => {
+    setError("");
+    try {
+      const res = await fetch("http://localhost:5000/cart/Apple", {
+        method: "DELETE"
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Failed to remove apple");
+        return;
+      }
+
+      loadCart();
+    } catch (err) {
+      console.error(err);
+      setError("Server not reachable");
+    }
+  };
+
   useEffect(() => {
     loadCart();
   }, []);
@@ -43,6 +89,8 @@ function Cart() {
       <p>Total cost: <strong>{appleTotal}</strong></p>
 
       <button onClick={loadCart}>Refresh</button>
+      <button onClick={addApple} style={{ marginLeft: 10}}>Add Apple</button>
+      <button onClick={removeApple} style={{ marginleft: 10}}>Remove Apple</button>
     </div>
   );
 }
