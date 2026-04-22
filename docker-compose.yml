@@ -1,0 +1,64 @@
+version: "3.9"
+
+services:
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: 4000
+      AUTH_SERVICE_URL: http://auth-service:5001
+      CART_SERVICE_URL: http://cart-service:5000
+      PRODUCT_SERVICE_URL: http://product-service:5002
+    depends_on:
+      - auth-service
+      - cart-service
+      - product-service
+
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    ports:
+      - "5001:5001"
+    environment:
+      PORT: 5001
+
+  cart-service:
+    build: ./backend
+    container_name: cart-service
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: ministore
+    depends_on:
+      - db
+
+  product-service:
+    build: ./product-service
+    container_name: product-service
+    ports:
+      - "5002:5002"
+    environment:
+      PORT: 5002
+
+  db:
+    image: postgres:15-alpine
+    container_name: minishop-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 
+      POSTGRES_DB: MiniSHop
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
